@@ -17,11 +17,11 @@ type Stdiner interface {
 }
 
 type Stdouter interface {
-	Stdout() io.Writer
+	Stdout() io.ReadWriter
 }
 
 type Stderrer interface {
-	Stderr() io.Writer
+	Stderr() io.ReadWriter
 }
 
 type Stdioer interface {

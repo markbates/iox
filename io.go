@@ -14,14 +14,14 @@ var _ Stdouter = IO{}
 
 // IO represents the standard input, output, and error stream.
 type IO struct {
-	In  io.Reader `json:"in,omitempty"`  // standard input
-	Out io.Writer `json:"out,omitempty"` // standard output
-	Err io.Writer `json:"err,omitempty"` // standard error
+	In  io.Reader     `json:"in,omitempty"`  // standard input
+	Out io.ReadWriter `json:"out,omitempty"` // standard output
+	Err io.ReadWriter `json:"err,omitempty"` // standard error
 }
 
 // Stdout returns IO.In.
 // Defaults to os.Stdout.
-func (oi IO) Stdout() io.Writer {
+func (oi IO) Stdout() io.ReadWriter {
 	if oi.Out == nil {
 		return os.Stdout
 	}
@@ -31,7 +31,7 @@ func (oi IO) Stdout() io.Writer {
 
 // Stderr returns IO.Err.
 // Defaults to os.Stderr.
-func (oi IO) Stderr() io.Writer {
+func (oi IO) Stderr() io.ReadWriter {
 	if oi.Err == nil {
 		return os.Stderr
 	}
