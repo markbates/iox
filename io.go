@@ -17,6 +17,16 @@ type IO struct {
 	Err io.Writer `json:"-"` // standard error
 }
 
+// Stdin returns IO.In.
+// Defaults to os.Stdin.
+func (oi IO) Stdin() io.Reader {
+	if oi.In == nil {
+		return os.Stdin
+	}
+
+	return oi.In
+}
+
 // Stdout returns IO.In.
 // Defaults to os.Stdout.
 func (oi IO) Stdout() io.Writer {
@@ -35,14 +45,4 @@ func (oi IO) Stderr() io.Writer {
 	}
 
 	return oi.Err
-}
-
-// Stdin returns IO.In.
-// Defaults to os.Stdin.
-func (oi IO) Stdin() io.Reader {
-	if oi.In == nil {
-		return os.Stdin
-	}
-
-	return oi.In
 }
