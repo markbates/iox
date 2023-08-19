@@ -29,23 +29,3 @@ func Test_Buffer(t *testing.T) {
 	r.NoError(err)
 	r.Equal("hello", string(b))
 }
-
-func Test_Buffer_String(t *testing.T) {
-	t.Parallel()
-	r := require.New(t)
-
-	oi := Buffer{
-		In: strings.NewReader("hello"),
-	}
-
-	act := oi.String()
-	exp := `{
-  "stderr": "*bytes.Buffer",
-  "stdin": "*strings.Reader",
-  "stdout": "*bytes.Buffer"
-}`
-
-	// fmt.Println(act)
-	r.Equal(exp, act)
-
-}

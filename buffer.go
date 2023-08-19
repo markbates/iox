@@ -7,9 +7,9 @@ import (
 
 // Buffer is useful for testing.
 type Buffer struct {
-	In  io.Reader
-	Out bytes.Buffer
-	Err bytes.Buffer
+	In  io.Reader    `json:"-"`
+	Out bytes.Buffer `json:"-"`
+	Err bytes.Buffer `json:"-"`
 }
 
 func (oi *Buffer) IO() IO {
@@ -22,12 +22,4 @@ func (oi *Buffer) IO() IO {
 		Out: &oi.Out,
 		Err: &oi.Err,
 	}
-}
-
-func (oi Buffer) MarshalJSON() ([]byte, error) {
-	return oi.IO().MarshalJSON()
-}
-
-func (oi Buffer) String() string {
-	return oi.IO().String()
 }
