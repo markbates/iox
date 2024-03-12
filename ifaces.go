@@ -9,7 +9,7 @@ type IOable interface {
 
 // IOSetable can be implemented to receive an IO.
 type IOSetable interface {
-	SetStdio(oi IO)
+	SetStdio(oi IO) error
 }
 
 type Stdiner interface {

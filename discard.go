@@ -1,7 +1,7 @@
 package iox
 
 import (
-	"fmt"
+	"bytes"
 	"io"
 )
 
@@ -10,17 +10,8 @@ import (
 // and Stdout.
 func Discard() IO {
 	return IO{
-		Out: discard{},
-		Err: discard{},
+		Err: io.Discard,
+		In:  bytes.NewReader(nil),
+		Out: io.Discard,
 	}
-}
-
-type discard struct{}
-
-func (discard) Write(p []byte) (n int, err error) {
-	return io.Discard.Write(p)
-}
-
-func (discard) Read(p []byte) (n int, err error) {
-	return 0, fmt.Errorf("cannot read from discard")
 }
