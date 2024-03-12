@@ -28,4 +28,4 @@ jobs:
           REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
         run: |
           git config --global url."https://markbates:${REPO_TOKEN}@github.com".insteadOf "https://github.com"
-          make test
+          go test -count 1 -race -cover ./...
