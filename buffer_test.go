@@ -13,6 +13,9 @@ func Test_Buffer(t *testing.T) {
 	t.Parallel()
 	r := require.New(t)
 
+	var nb *Buffer
+	r.Equal(IO{}, nb.IO())
+
 	buf := Buffer{
 		In: strings.NewReader("hello"),
 	}
