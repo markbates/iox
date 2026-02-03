@@ -30,3 +30,22 @@ func Test_StdIO(t *testing.T) {
 	s.Err = &err
 	r.Equal(&err, s.Stderr())
 }
+
+func Test_IO_IsZero(t *testing.T) {
+	t.Parallel()
+	r := require.New(t)
+
+	s := IO{}
+	r.True(s.IsZero())
+
+	s.In = os.Stdin
+	r.False(s.IsZero())
+
+	s = IO{}
+	s.Out = os.Stdout
+	r.False(s.IsZero())
+
+	s = IO{}
+	s.Err = os.Stderr
+	r.False(s.IsZero())
+}

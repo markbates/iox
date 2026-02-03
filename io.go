@@ -46,3 +46,7 @@ func (oi IO) Stderr() io.Writer {
 
 	return oi.Err
 }
+
+func (oi IO) IsZero() bool {
+	return oi.In == nil && oi.Out == nil && oi.Err == nil
+}
